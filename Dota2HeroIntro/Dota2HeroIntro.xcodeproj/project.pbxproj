@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3128144C1CF2E77C005A7E11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128144B1CF2E77C005A7E11 /* main.m */; };
+		3128144F1CF2E77C005A7E11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128144E1CF2E77C005A7E11 /* AppDelegate.m */; };
+		312814551CF2E77C005A7E11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312814531CF2E77C005A7E11 /* Main.storyboard */; };
+		312814571CF2E77C005A7E11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 312814561CF2E77C005A7E11 /* Assets.xcassets */; };
+		3128145A1CF2E77C005A7E11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312814581CF2E77C005A7E11 /* LaunchScreen.storyboard */; };
+		312814631CF2E851005A7E11 /* MasterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312814621CF2E851005A7E11 /* MasterTableViewController.m */; };
+		312814651CF30624005A7E11 /* herolist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 312814641CF30624005A7E11 /* herolist.plist */; };
+		312814681CF30FA8005A7E11 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312814671CF30FA8005A7E11 /* DetailViewController.m */; };
+		3128149D1CF318BA005A7E11 /* antimage_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128148B1CF318BA005A7E11 /* antimage_full.png */; };
+		3128149E1CF318BA005A7E11 /* antimage_hphover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128148C1CF318BA005A7E11 /* antimage_hphover.png */; };
+		3128149F1CF318BA005A7E11 /* antimage_sb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128148D1CF318BA005A7E11 /* antimage_sb.png */; };
+		312814A01CF318BA005A7E11 /* drow_ranger_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128148E1CF318BA005A7E11 /* drow_ranger_full.png */; };
+		312814A11CF318BA005A7E11 /* drow_ranger_hphover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128148F1CF318BA005A7E11 /* drow_ranger_hphover.png */; };
+		312814A21CF318BA005A7E11 /* drow_ranger_sb.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814901CF318BA005A7E11 /* drow_ranger_sb.png */; };
+		312814A31CF318BA005A7E11 /* earthshaker_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814911CF318BA005A7E11 /* earthshaker_full.png */; };
+		312814A41CF318BA005A7E11 /* earthshaker_hphover.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814921CF318BA005A7E11 /* earthshaker_hphover.png */; };
+		312814A51CF318BA005A7E11 /* earthshaker_sb.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814931CF318BA005A7E11 /* earthshaker_sb.png */; };
+		312814A61CF318BA005A7E11 /* lina_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814941CF318BA005A7E11 /* lina_full.png */; };
+		312814A71CF318BA005A7E11 /* lina_hphover.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814951CF318BA005A7E11 /* lina_hphover.png */; };
+		312814A81CF318BA005A7E11 /* lina_sb.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814961CF318BA005A7E11 /* lina_sb.png */; };
+		312814A91CF318BA005A7E11 /* puck_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814971CF318BA005A7E11 /* puck_full.png */; };
+		312814AA1CF318BA005A7E11 /* puck_hphover.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814981CF318BA005A7E11 /* puck_hphover.png */; };
+		312814AB1CF318BA005A7E11 /* puck_sb.png in Resources */ = {isa = PBXBuildFile; fileRef = 312814991CF318BA005A7E11 /* puck_sb.png */; };
+		312814AC1CF318BA005A7E11 /* sven_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128149A1CF318BA005A7E11 /* sven_full.png */; };
+		312814AD1CF318BA005A7E11 /* sven_hphover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128149B1CF318BA005A7E11 /* sven_hphover.png */; };
+		312814AE1CF318BA005A7E11 /* sven_sb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3128149C1CF318BA005A7E11 /* sven_sb.png */; };
+		312814B11CF320F3005A7E11 /* HeroItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 312814B01CF320F3005A7E11 /* HeroItemTableViewCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		312814471CF2E77C005A7E11 /* Dota2HeroIntro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dota2HeroIntro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3128144B1CF2E77C005A7E11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3128144D1CF2E77C005A7E11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3128144E1CF2E77C005A7E11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		312814541CF2E77C005A7E11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		312814561CF2E77C005A7E11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		312814591CF2E77C005A7E11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3128145B1CF2E77C005A7E11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		312814611CF2E851005A7E11 /* MasterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterTableViewController.h; path = ../MasterTableViewController.h; sourceTree = "<group>"; };
+		312814621CF2E851005A7E11 /* MasterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterTableViewController.m; path = ../MasterTableViewController.m; sourceTree = "<group>"; };
+		312814641CF30624005A7E11 /* herolist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = herolist.plist; sourceTree = "<group>"; };
+		312814661CF30FA8005A7E11 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		312814671CF30FA8005A7E11 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		3128148B1CF318BA005A7E11 /* antimage_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = antimage_full.png; sourceTree = "<group>"; };
+		3128148C1CF318BA005A7E11 /* antimage_hphover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = antimage_hphover.png; sourceTree = "<group>"; };
+		3128148D1CF318BA005A7E11 /* antimage_sb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = antimage_sb.png; sourceTree = "<group>"; };
+		3128148E1CF318BA005A7E11 /* drow_ranger_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drow_ranger_full.png; sourceTree = "<group>"; };
+		3128148F1CF318BA005A7E11 /* drow_ranger_hphover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drow_ranger_hphover.png; sourceTree = "<group>"; };
+		312814901CF318BA005A7E11 /* drow_ranger_sb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drow_ranger_sb.png; sourceTree = "<group>"; };
+		312814911CF318BA005A7E11 /* earthshaker_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earthshaker_full.png; sourceTree = "<group>"; };
+		312814921CF318BA005A7E11 /* earthshaker_hphover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earthshaker_hphover.png; sourceTree = "<group>"; };
+		312814931CF318BA005A7E11 /* earthshaker_sb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earthshaker_sb.png; sourceTree = "<group>"; };
+		312814941CF318BA005A7E11 /* lina_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lina_full.png; sourceTree = "<group>"; };
+		312814951CF318BA005A7E11 /* lina_hphover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lina_hphover.png; sourceTree = "<group>"; };
+		312814961CF318BA005A7E11 /* lina_sb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lina_sb.png; sourceTree = "<group>"; };
+		312814971CF318BA005A7E11 /* puck_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puck_full.png; sourceTree = "<group>"; };
+		312814981CF318BA005A7E11 /* puck_hphover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puck_hphover.png; sourceTree = "<group>"; };
+		312814991CF318BA005A7E11 /* puck_sb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puck_sb.png; sourceTree = "<group>"; };
+		3128149A1CF318BA005A7E11 /* sven_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sven_full.png; sourceTree = "<group>"; };
+		3128149B1CF318BA005A7E11 /* sven_hphover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sven_hphover.png; sourceTree = "<group>"; };
+		3128149C1CF318BA005A7E11 /* sven_sb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sven_sb.png; sourceTree = "<group>"; };
+		312814AF1CF320F3005A7E11 /* HeroItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroItemTableViewCell.h; sourceTree = "<group>"; };
+		312814B01CF320F3005A7E11 /* HeroItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroItemTableViewCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		312814441CF2E77C005A7E11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3128143E1CF2E77C005A7E11 = {
+			isa = PBXGroup;
+			children = (
+				312814491CF2E77C005A7E11 /* Dota2HeroIntro */,
+				312814481CF2E77C005A7E11 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		312814481CF2E77C005A7E11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				312814471CF2E77C005A7E11 /* Dota2HeroIntro.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		312814491CF2E77C005A7E11 /* Dota2HeroIntro */ = {
+			isa = PBXGroup;
+			children = (
+				3128144D1CF2E77C005A7E11 /* AppDelegate.h */,
+				3128144E1CF2E77C005A7E11 /* AppDelegate.m */,
+				312814AF1CF320F3005A7E11 /* HeroItemTableViewCell.h */,
+				312814B01CF320F3005A7E11 /* HeroItemTableViewCell.m */,
+				312814611CF2E851005A7E11 /* MasterTableViewController.h */,
+				312814621CF2E851005A7E11 /* MasterTableViewController.m */,
+				312814661CF30FA8005A7E11 /* DetailViewController.h */,
+				312814671CF30FA8005A7E11 /* DetailViewController.m */,
+				312814531CF2E77C005A7E11 /* Main.storyboard */,
+				312814581CF2E77C005A7E11 /* LaunchScreen.storyboard */,
+				3128145B1CF2E77C005A7E11 /* Info.plist */,
+				312814641CF30624005A7E11 /* herolist.plist */,
+				312814561CF2E77C005A7E11 /* Assets.xcassets */,
+				3128148A1CF318BA005A7E11 /* heros */,
+				3128144A1CF2E77C005A7E11 /* Supporting Files */,
+			);
+			path = Dota2HeroIntro;
+			sourceTree = "<group>";
+		};
+		3128144A1CF2E77C005A7E11 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3128144B1CF2E77C005A7E11 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3128148A1CF318BA005A7E11 /* heros */ = {
+			isa = PBXGroup;
+			children = (
+				3128148B1CF318BA005A7E11 /* antimage_full.png */,
+				3128148C1CF318BA005A7E11 /* antimage_hphover.png */,
+				3128148D1CF318BA005A7E11 /* antimage_sb.png */,
+				3128148E1CF318BA005A7E11 /* drow_ranger_full.png */,
+				3128148F1CF318BA005A7E11 /* drow_ranger_hphover.png */,
+				312814901CF318BA005A7E11 /* drow_ranger_sb.png */,
+				312814911CF318BA005A7E11 /* earthshaker_full.png */,
+				312814921CF318BA005A7E11 /* earthshaker_hphover.png */,
+				312814931CF318BA005A7E11 /* earthshaker_sb.png */,
+				312814941CF318BA005A7E11 /* lina_full.png */,
+				312814951CF318BA005A7E11 /* lina_hphover.png */,
+				312814961CF318BA005A7E11 /* lina_sb.png */,
+				312814971CF318BA005A7E11 /* puck_full.png */,
+				312814981CF318BA005A7E11 /* puck_hphover.png */,
+				312814991CF318BA005A7E11 /* puck_sb.png */,
+				3128149A1CF318BA005A7E11 /* sven_full.png */,
+				3128149B1CF318BA005A7E11 /* sven_hphover.png */,
+				3128149C1CF318BA005A7E11 /* sven_sb.png */,
+			);
+			name = heros;
+			path = ../heros;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		312814461CF2E77C005A7E11 /* Dota2HeroIntro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3128145E1CF2E77C005A7E11 /* Build configuration list for PBXNativeTarget "Dota2HeroIntro" */;
+			buildPhases = (
+				312814431CF2E77C005A7E11 /* Sources */,
+				312814441CF2E77C005A7E11 /* Frameworks */,
+				312814451CF2E77C005A7E11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dota2HeroIntro;
+			productName = Dota2HeroIntro;
+			productReference = 312814471CF2E77C005A7E11 /* Dota2HeroIntro.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3128143F1CF2E77C005A7E11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = shouzhi;
+				TargetAttributes = {
+					312814461CF2E77C005A7E11 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 312814421CF2E77C005A7E11 /* Build configuration list for PBXProject "Dota2HeroIntro" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3128143E1CF2E77C005A7E11;
+			productRefGroup = 312814481CF2E77C005A7E11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				312814461CF2E77C005A7E11 /* Dota2HeroIntro */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		312814451CF2E77C005A7E11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3128145A1CF2E77C005A7E11 /* LaunchScreen.storyboard in Resources */,
+				3128149F1CF318BA005A7E11 /* antimage_sb.png in Resources */,
+				312814AC1CF318BA005A7E11 /* sven_full.png in Resources */,
+				312814A71CF318BA005A7E11 /* lina_hphover.png in Resources */,
+				3128149D1CF318BA005A7E11 /* antimage_full.png in Resources */,
+				312814A01CF318BA005A7E11 /* drow_ranger_full.png in Resources */,
+				312814571CF2E77C005A7E11 /* Assets.xcassets in Resources */,
+				312814A81CF318BA005A7E11 /* lina_sb.png in Resources */,
+				312814AE1CF318BA005A7E11 /* sven_sb.png in Resources */,
+				312814AA1CF318BA005A7E11 /* puck_hphover.png in Resources */,
+				312814A21CF318BA005A7E11 /* drow_ranger_sb.png in Resources */,
+				312814651CF30624005A7E11 /* herolist.plist in Resources */,
+				312814A51CF318BA005A7E11 /* earthshaker_sb.png in Resources */,
+				312814A61CF318BA005A7E11 /* lina_full.png in Resources */,
+				312814A31CF318BA005A7E11 /* earthshaker_full.png in Resources */,
+				3128149E1CF318BA005A7E11 /* antimage_hphover.png in Resources */,
+				312814AD1CF318BA005A7E11 /* sven_hphover.png in Resources */,
+				312814551CF2E77C005A7E11 /* Main.storyboard in Resources */,
+				312814A91CF318BA005A7E11 /* puck_full.png in Resources */,
+				312814AB1CF318BA005A7E11 /* puck_sb.png in Resources */,
+				312814A11CF318BA005A7E11 /* drow_ranger_hphover.png in Resources */,
+				312814A41CF318BA005A7E11 /* earthshaker_hphover.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		312814431CF2E77C005A7E11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3128144F1CF2E77C005A7E11 /* AppDelegate.m in Sources */,
+				3128144C1CF2E77C005A7E11 /* main.m in Sources */,
+				312814631CF2E851005A7E11 /* MasterTableViewController.m in Sources */,
+				312814B11CF320F3005A7E11 /* HeroItemTableViewCell.m in Sources */,
+				312814681CF30FA8005A7E11 /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		312814531CF2E77C005A7E11 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				312814541CF2E77C005A7E11 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		312814581CF2E77C005A7E11 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				312814591CF2E77C005A7E11 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3128145C1CF2E77C005A7E11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3128145D1CF2E77C005A7E11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3128145F1CF2E77C005A7E11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Dota2HeroIntro/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xsz.Dota2HeroIntro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		312814601CF2E77C005A7E11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Dota2HeroIntro/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xsz.Dota2HeroIntro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		312814421CF2E77C005A7E11 /* Build configuration list for PBXProject "Dota2HeroIntro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3128145C1CF2E77C005A7E11 /* Debug */,
+				3128145D1CF2E77C005A7E11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3128145E1CF2E77C005A7E11 /* Build configuration list for PBXNativeTarget "Dota2HeroIntro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3128145F1CF2E77C005A7E11 /* Debug */,
+				312814601CF2E77C005A7E11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3128143F1CF2E77C005A7E11 /* Project object */;
+}
