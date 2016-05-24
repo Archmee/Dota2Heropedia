@@ -9,6 +9,7 @@
 #import "MasterTableViewController.h"
 #import "DetailViewController.h"
 #import "HeroItemTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h> //导入第三方库
 
 #define API_KEY @"87294A1C296C1FB71635BC8CA95F2028"
 
@@ -84,10 +85,15 @@
     HeroItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeroItem" forIndexPath:indexPath];
     
     // Configure the cell...
-    //NSString *iconImageName = [[[self.heroes[indexPath.row] objectForKey:@"ename"] lowercaseString] stringByAppendingString:@"_hphover.png"];
-    //cell.iconImage.image = [UIImage imageNamed: iconImageName];
+//    NSString *iconImageName = [[[self.heroes[indexPath.row] objectForKey:@"ename"] lowercaseString] stringByAppendingString:@"_hphover.png"];
+//    cell.iconImage.image = [UIImage imageNamed: iconImageName];
+//    cell.nameLabel.text = [self.heroes[indexPath.row] objectForKey:@"localized_name"];
+//    cell.typeLabel.text = [self.heroes[indexPath.row] objectForKey:@"type"];
+    
+    NSString *urlStr = @"http://cdn.dota2.com/apps/dota2/images/heroes/drow_ranger_hphover.png";
+    [cell.iconImage sd_setImageWithURL: [NSURL URLWithString: urlStr]];
+    
     cell.nameLabel.text = [self.heroes[indexPath.row] objectForKey:@"localized_name"];
-    //cell.typeLabel.text = [self.heroes[indexPath.row] objectForKey:@"type"];
 
     return cell;
 }
