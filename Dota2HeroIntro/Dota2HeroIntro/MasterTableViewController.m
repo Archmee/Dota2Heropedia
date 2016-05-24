@@ -10,6 +10,8 @@
 #import "DetailViewController.h"
 #import "HeroItemTableViewCell.h"
 
+#define API_KEY @"87294A1C296C1FB71635BC8CA95F2028"
+
 @interface MasterTableViewController ()
 
 @property (nonatomic) NSArray *heroes;
@@ -18,13 +20,40 @@
 
 @implementation MasterTableViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=%@&language=zh_cn", API_KEY];
+    
+    //create configuration
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    //create session
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject ]; //如果用同名但是带delegate参数的方法就可以在下面block代码块中省去dispatch_async()的调用，原因未知，带参数代码为： delegate: nil delegateQueue: [NSOperationQueue mainQueue]
+    //create session data task
+    NSURLSessionDataTask *task = [session dataTaskWithURL: [NSURL URLWithString: urlString]
+                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                            NSDictionary *serJSON = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                    options:kNilOptions
+                                                                                                      error:nil];//options:NSJSONReadingMutableContainers
+                                            self.heroes = [[serJSON objectForKey:@"result"] objectForKey:@"heroes"];
+                                            
+                                            //该函数是为了让这段代码块中的代码在主线程中执行，而不是在背景线程执行
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                [self.tableView reloadData]; //当数据从网络请求成功后，要刷新表
+                                            });
+                                        }];
+    //start task
+    [task resume];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Dota2 Heroes Intro";
+    self.title = @"Dota2 Heroespedia";
     
-    NSString *fullFilePath = [[NSBundle mainBundle] pathForResource:@"herolist" ofType:@"plist"];
-    self.heroes = [NSArray arrayWithContentsOfFile: fullFilePath];
+    //这是我们读取本地文件的结果，接下来我们在视图将要加载的过程中网络请求来代替
+    //NSString *fullFilePath = [[NSBundle mainBundle] pathForResource:@"herolist" ofType:@"plist"];
+    //self.heroes = [NSArray arrayWithContentsOfFile: fullFilePath];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -55,10 +84,10 @@
     HeroItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeroItem" forIndexPath:indexPath];
     
     // Configure the cell...
-    NSString *iconImage = [[[self.heroes[indexPath.row] objectForKey:@"ename"] lowercaseString] stringByAppendingString:@"_hphover.png"];
-    cell.iconImage.image = [UIImage imageNamed: iconImage];
-    cell.nameLabel.text = [self.heroes[indexPath.row] objectForKey:@"name"];
-    cell.typeLabel.text = [self.heroes[indexPath.row] objectForKey:@"type"];
+    //NSString *iconImageName = [[[self.heroes[indexPath.row] objectForKey:@"ename"] lowercaseString] stringByAppendingString:@"_hphover.png"];
+    //cell.iconImage.image = [UIImage imageNamed: iconImageName];
+    cell.nameLabel.text = [self.heroes[indexPath.row] objectForKey:@"localized_name"];
+    //cell.typeLabel.text = [self.heroes[indexPath.row] objectForKey:@"type"];
 
     return cell;
 }
