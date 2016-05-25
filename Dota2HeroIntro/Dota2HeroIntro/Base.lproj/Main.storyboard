@@ -70,10 +70,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nic-NX-sO6">
-                                <rect key="frame" x="0.0" y="64" width="600" height="200"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nic-NX-sO6">
+                                <rect key="frame" x="0.0" y="6" width="600" height="258"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="BM9-OU-JfO"/>
+                                    <constraint firstAttribute="height" constant="258" id="2Yx-7x-3V9"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7jR-FB-52l">
@@ -86,13 +86,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="nic-NX-sO6" secondAttribute="trailing" id="6uN-zm-lFd"/>
-                            <constraint firstItem="7jR-FB-52l" firstAttribute="leading" secondItem="aDf-Jf-lvH" secondAttribute="leadingMargin" id="VEl-hD-l0A"/>
-                            <constraint firstItem="nic-NX-sO6" firstAttribute="centerX" secondItem="7jR-FB-52l" secondAttribute="centerX" id="duB-id-Ms0"/>
-                            <constraint firstItem="7jR-FB-52l" firstAttribute="top" secondItem="nic-NX-sO6" secondAttribute="bottom" constant="8" symbolic="YES" id="h1g-Ny-Hr2"/>
-                            <constraint firstItem="nic-NX-sO6" firstAttribute="leading" secondItem="aDf-Jf-lvH" secondAttribute="leading" id="kyV-pz-XwB"/>
-                            <constraint firstAttribute="bottom" secondItem="7jR-FB-52l" secondAttribute="bottom" constant="20" symbolic="YES" id="kzj-bf-S6K"/>
-                            <constraint firstItem="nic-NX-sO6" firstAttribute="top" secondItem="0KG-I5-01F" secondAttribute="bottom" id="uJ3-5b-e5N"/>
+                            <constraint firstItem="nic-NX-sO6" firstAttribute="top" secondItem="aDf-Jf-lvH" secondAttribute="topMargin" constant="6" id="1yc-hs-5oI"/>
+                            <constraint firstItem="7jR-FB-52l" firstAttribute="top" secondItem="nic-NX-sO6" secondAttribute="bottom" constant="8" symbolic="YES" id="86p-A6-hr3"/>
+                            <constraint firstItem="nic-NX-sO6" firstAttribute="centerX" secondItem="7jR-FB-52l" secondAttribute="centerX" id="Tgo-rL-nHI"/>
+                            <constraint firstItem="nic-NX-sO6" firstAttribute="leading" secondItem="aDf-Jf-lvH" secondAttribute="leading" id="jpA-Mg-82s"/>
+                            <constraint firstItem="7jR-FB-52l" firstAttribute="leading" secondItem="aDf-Jf-lvH" secondAttribute="leadingMargin" id="km0-uL-lM6"/>
+                            <constraint firstAttribute="bottom" secondItem="7jR-FB-52l" secondAttribute="bottom" constant="20" symbolic="YES" id="y4c-Ov-tQD"/>
+                            <constraint firstAttribute="trailing" secondItem="nic-NX-sO6" secondAttribute="trailing" id="zZD-KB-0AL"/>
                         </constraints>
                     </view>
                     <connections>
@@ -109,9 +109,12 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gAh-pN-Fll" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="K2N-WU-Hfh">
+                    <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" barStyle="black" id="K2N-WU-Hfh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

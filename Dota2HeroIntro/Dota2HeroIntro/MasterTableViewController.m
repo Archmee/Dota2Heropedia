@@ -15,53 +15,107 @@
 
 @interface MasterTableViewController ()
 
-@property (nonatomic) NSArray *heroes;
+@property (nonatomic) NSMutableArray *heroes;
+@property (nonatomic) NSDictionary *heroesDetail;
+
+@property (nonatomic) NSURLSession *session;
 
 @end
 
 @implementation MasterTableViewController
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSString *urlString = [NSString stringWithFormat:@"https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=%@&language=zh_cn", API_KEY];
+/*----------NOTE------------
+ iOS新规定必须使用https安全连接，所以我们下面有的用了http，而个别使用的https，但是不是每个url都支持了https，所以不支持https的url只能用http，这个时候，我们就要将该域名添加至Info.plist的ATS选项中作为例外情况，QAQ
+*/
+
+- (void)fetchHeroesList {
+    NSString *urlString = [NSString stringWithFormat:@"https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=%@&language=zh_cn", API_KEY]; //最后的language参数有zh_cn和en可选，此处用的https
     
     //create configuration
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    //create session
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: defaultConfigObject ]; //如果用同名但是带delegate参数的方法就可以在下面block代码块中省去dispatch_async()的调用，原因未知，带参数代码为： delegate: nil delegateQueue: [NSOperationQueue mainQueue]
+    //create session for reuse
+    self.session = [NSURLSession sessionWithConfiguration: defaultConfigObject ]; //如果用同名但是带delegate参数的方法就可以在下面block代码块中省去dispatch_async()的调用，原因未知，带参数代码为： delegate: nil delegateQueue: [NSOperationQueue mainQueue]
     //create session data task
-    NSURLSessionDataTask *task = [session dataTaskWithURL: [NSURL URLWithString: urlString]
+    NSURLSessionDataTask *task = [self.session dataTaskWithURL: [NSURL URLWithString: urlString]
+                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                 NSDictionary *serJSON = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                         options:NSJSONReadingMutableContainers
+                                                                                                           error:nil];//options:NSJSONReadingMutableContainers 这个参数决定了返回的数据是否可以修改
+                                                 self.heroes = [[serJSON objectForKey:@"result"] objectForKey:@"heroes"];
+                                                 /* heroes数组中每个元素的结构
+                                                  {
+                                                  "name": "npc_dota_hero_luna",
+                                                  "id": 48,
+                                                  "localized_name": "露娜"
+                                                  }*/
+                                                 
+                                                 //该函数是为了让这段代码块中的代码在主线程中执行，而不是在背景线程执行
+                                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                                     [self.tableView reloadData]; //当数据从网络请求成功后，要刷新表
+                                                 });
+                                             }];
+    //start task
+    [task resume];
+}
+
+- (void)fetchHeroesDetail {
+    NSString *urlString = @"http://www.dota2.com/jsfeed/heropickerdata?v=zh_cn"; //没有v参数是英文，v＝zh_ch, 此处使用http连接
+    
+    //create session data task
+    NSURLSessionDataTask *task = [self.session dataTaskWithURL: [NSURL URLWithString: urlString]
                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                            NSDictionary *serJSON = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                    options:kNilOptions
-                                                                                                      error:nil];//options:NSJSONReadingMutableContainers
-                                            self.heroes = [[serJSON objectForKey:@"result"] objectForKey:@"heroes"];
-                                            
-                                            //该函数是为了让这段代码块中的代码在主线程中执行，而不是在背景线程执行
-                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                [self.tableView reloadData]; //当数据从网络请求成功后，要刷新表
-                                            });
+                                            self.heroesDetail = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                    options:NSJSONReadingMutableContainers
+                                                                                                      error:nil];
+                                            /* JSON数据中每个元素的结构
+                                             "antimage":{
+                                                "name":"Anti-Mage",
+                                                "bio":"The monks of ... ",
+                                                "atk":"melee",
+                                                "atk_l":"Melee",
+                                                "roles":[
+                                                         "Carry",
+                                                         "Escape",
+                                                         "Nuker"
+                                                         ],
+                                                "roles_l":[
+                                                           "Carry",
+                                                           "Escape",
+                                                           "Nuker"
+                                                           ]
+                                            },*/
                                         }];
     //start task
     [task resume];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:nil action:nil];
+    
+    [self fetchHeroesList];
+    [self fetchHeroesDetail];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Dota2 Heroespedia";
-    
-    //这是我们读取本地文件的结果，接下来我们在视图将要加载的过程中网络请求来代替
-    //NSString *fullFilePath = [[NSBundle mainBundle] pathForResource:@"herolist" ofType:@"plist"];
-    //self.heroes = [NSArray arrayWithContentsOfFile: fullFilePath];
+    self.title = @"Dota2 Heropedia";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ToDetail"]) {
         DetailViewController *DetailVC = [segue destinationViewController];
-        NSInteger selectedRow = [[self.tableView indexPathForSelectedRow] row];
-        DetailVC.heroIntro = self.heroes[selectedRow]; //其实这里可以利用sender，但是How ？
+        
+        NSIndexPath *index = [self.tableView indexPathForSelectedRow];
+        NSMutableDictionary *selectedHero = self.heroes[index.row]; //仅仅是指向同一个地址而已
+        NSDictionary *heroItem = [self.heroesDetail objectForKey: [selectedHero objectForKey:@"name"] ];
+    
+        [selectedHero setObject:[heroItem objectForKey:@"atk_l"] forKey:@"atk_l" ];
+        [selectedHero setObject:[heroItem objectForKey:@"roles_l"] forKey:@"roles_l" ];
+        [selectedHero setObject:[heroItem objectForKey:@"bio"] forKey:@"bio" ];
+        
+        DetailVC.heroIntro = selectedHero;
     }
 }
 
@@ -80,67 +134,22 @@
     return [self.heroes count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HeroItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeroItem" forIndexPath:indexPath];
     
     // Configure the cell...
-//    NSString *iconImageName = [[[self.heroes[indexPath.row] objectForKey:@"ename"] lowercaseString] stringByAppendingString:@"_hphover.png"];
-//    cell.iconImage.image = [UIImage imageNamed: iconImageName];
-//    cell.nameLabel.text = [self.heroes[indexPath.row] objectForKey:@"localized_name"];
-//    cell.typeLabel.text = [self.heroes[indexPath.row] objectForKey:@"type"];
     
-    NSString *urlStr = @"http://cdn.dota2.com/apps/dota2/images/heroes/drow_ranger_hphover.png";
+    NSString *name = [self.heroes[indexPath.row] objectForKey:@"name"];
+    NSString *realName = [name stringByReplacingOccurrencesOfString:@"npc_dota_hero_" withString: @""]; //将字符串中指定字符串替换为空
+    [self.heroes[indexPath.row] setObject:realName forKey:@"name" ]; //将已经处理好的真实名字替代原值，便于后续使用
+    
+    NSString *urlStr = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_hphover.png", realName];
     [cell.iconImage sd_setImageWithURL: [NSURL URLWithString: urlStr]];
     
     cell.nameLabel.text = [self.heroes[indexPath.row] objectForKey:@"localized_name"];
+    cell.typeLabel.text = [[self.heroesDetail objectForKey:realName] objectForKey:@"atk_l"];
 
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

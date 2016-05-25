@@ -10,6 +10,6 @@
 
 @interface DetailViewController : UIViewController
 
-@property (nonatomic, assign) NSDictionary *heroIntro;
+@property (nonatomic) NSDictionary *heroIntro;
 
 @end
