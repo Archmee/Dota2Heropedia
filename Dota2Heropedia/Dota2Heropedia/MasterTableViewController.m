@@ -9,7 +9,7 @@
 #import "MasterTableViewController.h"
 #import "DetailViewController.h"
 #import "HeroItemTableViewCell.h"
-//#import <SDWebImage/UIImageView+WebCache.h> //导入第三方库
+#import <SDWebImage/UIImageView+WebCache.h> //导入第三方库
 
 #define API_KEY @"87294A1C296C1FB71635BC8CA95F2028"
 
@@ -89,18 +89,16 @@
     [task resume];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:nil action:nil];
-    
-    [self fetchHeroesList];
-    [self fetchHeroesDetail];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Dota2 Heropedia";
+    self.title = @"Dota2 英雄百科";
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:nil action:nil];
+    
+    
+    [self fetchHeroesList];
+    [self fetchHeroesDetail];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -144,7 +142,7 @@
     [self.heroes[indexPath.row] setObject:realName forKey:@"name" ]; //将已经处理好的真实名字替代原值，便于后续使用
     
     NSString *urlStr = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_hphover.png", realName];
-    //[cell.iconImage sd_setImageWithURL: [NSURL URLWithString: urlStr]];
+    [cell.iconImage sd_setImageWithURL: [NSURL URLWithString: urlStr]];
     
     cell.nameLabel.text = [self.heroes[indexPath.row] objectForKey:@"localized_name"];
     cell.typeLabel.text = [[self.heroesDetail objectForKey:realName] objectForKey:@"atk_l"];

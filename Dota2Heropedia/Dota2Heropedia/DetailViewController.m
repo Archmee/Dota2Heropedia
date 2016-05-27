@@ -7,7 +7,7 @@
 //
 
 #import "DetailViewController.h"
-//#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface DetailViewController ()
 
@@ -18,13 +18,11 @@
 
 @implementation DetailViewController
 
--(void)viewWillAppear:(BOOL)animated {
-    NSString *urlStr = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_vert.jpg", [self.heroIntro objectForKey:@"name"]]; //大图有矩形_full.png格式和正方形_vert.jpg格式
-    //[self.imageView sd_setImageWithURL:[NSURL URLWithString: urlStr]];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_vert.jpg", [self.heroIntro objectForKey:@"name"]]; //大图有矩形_full.png格式和正方形_vert.jpg格式
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString: urlStr]];
     
     //self.imageView.clipsToBounds = YES;//已经在storyboard中设置了
     self.textView.text = [self.heroIntro objectForKey:@"bio"];
