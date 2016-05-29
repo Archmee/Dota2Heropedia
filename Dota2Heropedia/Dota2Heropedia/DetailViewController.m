@@ -21,12 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *urlStr = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_vert.jpg", [self.heroIntro objectForKey:@"name"]]; //大图有矩形_full.png格式和正方形_vert.jpg格式
+    NSString *urlStr = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_vert.jpg", [self.heroIntro objectForKey:@"ename"]]; //大图有矩形_full.png格式和正方形_vert.jpg格式
     [self.imageView sd_setImageWithURL:[NSURL URLWithString: urlStr]];
     
     //self.imageView.clipsToBounds = YES;//已经在storyboard中设置了
     self.textView.text = [self.heroIntro objectForKey:@"bio"];
-    self.title = [self.heroIntro objectForKey:@"localized_name"];
+    self.title = [self.heroIntro objectForKey:@"dname"];
 }
 
 - (void)didReceiveMemoryWarning {
