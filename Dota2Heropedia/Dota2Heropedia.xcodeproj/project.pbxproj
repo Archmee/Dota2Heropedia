@@ -10,12 +10,14 @@
 		011D11FC287DE55CF6414BAF /* libPods-Dota2Heropedia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FBBB6E619CE533FA0B79224 /* libPods-Dota2Heropedia.a */; };
 		31EF84C61CF880F30071CF2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84BB1CF880F30071CF2D /* AppDelegate.m */; };
 		31EF84C71CF880F30071CF2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EF84BC1CF880F30071CF2D /* Assets.xcassets */; };
-		31EF84C91CF880F30071CF2D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84BF1CF880F30071CF2D /* DetailViewController.m */; };
 		31EF84CA1CF880F30071CF2D /* HeroItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */; };
 		31EF84CC1CF880F30071CF2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84C31CF880F30071CF2D /* main.m */; };
 		31EF84CD1CF880F30071CF2D /* MasterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84C51CF880F30071CF2D /* MasterTableViewController.m */; };
 		31EF84DC1CF882C40071CF2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31EF84DA1CF882C40071CF2D /* LaunchScreen.storyboard */; };
 		31EF84DD1CF882C40071CF2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31EF84DB1CF882C40071CF2D /* Main.storyboard */; };
+		31EF84E11CFA9B550071CF2D /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84E01CFA9B550071CF2D /* DetailTableViewController.m */; };
+		31EF84E41CFED5740071CF2D /* AbilityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84E31CFED5740071CF2D /* AbilityTableViewCell.m */; };
+		31EF84E71CFEDD710071CF2D /* BioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84E61CFEDD710071CF2D /* BioTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +26,6 @@
 		31EF84BA1CF880F30071CF2D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Dota2Heropedia/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		31EF84BB1CF880F30071CF2D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Dota2Heropedia/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		31EF84BC1CF880F30071CF2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Dota2Heropedia/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		31EF84BE1CF880F30071CF2D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = Dota2Heropedia/DetailViewController.h; sourceTree = SOURCE_ROOT; };
-		31EF84BF1CF880F30071CF2D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = Dota2Heropedia/DetailViewController.m; sourceTree = SOURCE_ROOT; };
 		31EF84C01CF880F30071CF2D /* HeroItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroItemTableViewCell.h; path = Dota2Heropedia/HeroItemTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroItemTableViewCell.m; path = Dota2Heropedia/HeroItemTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		31EF84C21CF880F30071CF2D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Dota2Heropedia/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -34,6 +34,12 @@
 		31EF84C51CF880F30071CF2D /* MasterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterTableViewController.m; path = Dota2Heropedia/MasterTableViewController.m; sourceTree = SOURCE_ROOT; };
 		31EF84DA1CF882C40071CF2D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Dota2Heropedia/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		31EF84DB1CF882C40071CF2D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Dota2Heropedia/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		31EF84DF1CFA9B550071CF2D /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailTableViewController.h; path = Dota2Heropedia/DetailTableViewController.h; sourceTree = SOURCE_ROOT; };
+		31EF84E01CFA9B550071CF2D /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailTableViewController.m; path = Dota2Heropedia/DetailTableViewController.m; sourceTree = SOURCE_ROOT; };
+		31EF84E21CFED5740071CF2D /* AbilityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbilityTableViewCell.h; path = Dota2Heropedia/AbilityTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		31EF84E31CFED5740071CF2D /* AbilityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbilityTableViewCell.m; path = Dota2Heropedia/AbilityTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		31EF84E51CFEDD710071CF2D /* BioTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BioTableViewCell.h; path = Dota2Heropedia/BioTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		31EF84E61CFEDD710071CF2D /* BioTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BioTableViewCell.m; path = Dota2Heropedia/BioTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		3BA309314BE6E53E9D96F841 /* Pods-Dota2Heropedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota2Heropedia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dota2Heropedia/Pods-Dota2Heropedia.debug.xcconfig"; sourceTree = "<group>"; };
 		8FBBB6E619CE533FA0B79224 /* libPods-Dota2Heropedia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dota2Heropedia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -84,10 +90,14 @@
 				31EF84BB1CF880F30071CF2D /* AppDelegate.m */,
 				31EF84C01CF880F30071CF2D /* HeroItemTableViewCell.h */,
 				31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */,
+				31EF84E21CFED5740071CF2D /* AbilityTableViewCell.h */,
+				31EF84E31CFED5740071CF2D /* AbilityTableViewCell.m */,
+				31EF84E51CFEDD710071CF2D /* BioTableViewCell.h */,
+				31EF84E61CFEDD710071CF2D /* BioTableViewCell.m */,
 				31EF84C41CF880F30071CF2D /* MasterTableViewController.h */,
 				31EF84C51CF880F30071CF2D /* MasterTableViewController.m */,
-				31EF84BE1CF880F30071CF2D /* DetailViewController.h */,
-				31EF84BF1CF880F30071CF2D /* DetailViewController.m */,
+				31EF84DF1CFA9B550071CF2D /* DetailTableViewController.h */,
+				31EF84E01CFA9B550071CF2D /* DetailTableViewController.m */,
 				31EF84C21CF880F30071CF2D /* Info.plist */,
 				31EF84DB1CF882C40071CF2D /* Main.storyboard */,
 				31EF84DA1CF882C40071CF2D /* LaunchScreen.storyboard */,
@@ -227,11 +237,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31EF84E11CFA9B550071CF2D /* DetailTableViewController.m in Sources */,
 				31EF84CD1CF880F30071CF2D /* MasterTableViewController.m in Sources */,
+				31EF84E71CFEDD710071CF2D /* BioTableViewCell.m in Sources */,
 				31EF84C61CF880F30071CF2D /* AppDelegate.m in Sources */,
 				31EF84CA1CF880F30071CF2D /* HeroItemTableViewCell.m in Sources */,
 				31EF84CC1CF880F30071CF2D /* main.m in Sources */,
-				31EF84C91CF880F30071CF2D /* DetailViewController.m in Sources */,
+				31EF84E41CFED5740071CF2D /* AbilityTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

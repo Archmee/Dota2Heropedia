@@ -7,8 +7,8 @@
 //
 
 #import "MasterTableViewController.h"
-#import "DetailViewController.h"
 #import "HeroItemTableViewCell.h"
+#import "DetailTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h> //导入第三方库
 
 @interface MasterTableViewController ()
@@ -50,26 +50,6 @@
  "droles":"核心 - 逃生 - 爆发"
  },
  */
-@property (nonatomic) NSDictionary *heroesBio;
-
- /* heroesBio Dictionay的数据结构
- "antimage":{
- "name":"Anti-Mage",
- "bio":"The monks of ... ",
- "atk":"melee",
- "atk_l":"Melee",
- "roles":[
- "Carry",
- "Escape",
- "Nuker"
- ],
- "roles_l":[
- "Carry",
- "Escape",
- "Nuker"
- ]
- },
-*/
 
 @property (nonatomic) NSURLSession *session;
 
@@ -117,21 +97,62 @@
 }
 
 - (void)fetchHeroesBioData {
-    NSString *urlString = @"http://www.dota2.com/jsfeed/heropickerdata?v=zh"; //没有v参数是英文，v＝zh, 此处使用http连接
+    NSString *urlString = @"http://www.dota2.com/jsfeed/heropickerdata?l=schinese"; //此处使用http连接
     
     //create session data task
     NSURLSessionDataTask *task = [self.session dataTaskWithURL: [NSURL URLWithString: urlString]
                                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                            self.heroesBio = [NSJSONSerialization JSONObjectWithData:data
+                                            NSDictionary *bio = [NSJSONSerialization JSONObjectWithData:data
                                                                                                     options:kNilOptions
                                                                                                       error:nil];
-                                            [self.heroesBio writeToFile:[self.docPath stringByAppendingPathComponent:@"heroesBio.plist"] atomically:YES];
+                                            [bio writeToFile:[self.docPath stringByAppendingPathComponent:@"heroesBio.plist"] atomically:YES];
                                         }];
     //start task
     [task resume];
 }
 
+- (void)fetchHeroesAbilityData {
+    NSString *urlString = @"http://www.dota2.com/jsfeed/heropediadata/?feeds=abilitydata&l=schinese";
+    
+    NSURLSessionDataTask *task = [self.session dataTaskWithURL:[NSURL URLWithString:urlString]
+                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                 NSDictionary *ability = [NSJSONSerialization JSONObjectWithData:data
+                                                                                              options:kNilOptions
+                                                                                                error:nil];
+                                                 [[ability objectForKey:@"abilitydata"] writeToFile: [self.docPath stringByAppendingPathComponent:@"heroesAbility.plist"] atomically:YES];
+                                             }];
+    [task resume];
+}
+
+- (void)fetchHeroesItemsData {
+    NSString *urlString = @"http://www.dota2.com/jsfeed/heropediadata/?feeds=itemdata&l=schinese";
+    
+    NSURLSessionDataTask *task = [self.session dataTaskWithURL:[NSURL URLWithString:urlString]
+                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                 NSMutableDictionary *items = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                         options:NSJSONReadingMutableContainers
+                                                                                                         error:nil];
+                                                 items = [items objectForKey:@"itemdata"];//取出需要的列表覆盖原数据
+                                                 NSArray *itemsList = [items allKeys];//为了遍历
+                                                 //过滤空空对象值 null
+                                                 for (NSString *itemName in itemsList) {
+                                                     id component = [[items objectForKey:itemName] objectForKey:@"components"];
+                                                     if ([component isEqual:[NSNull null]]) { //isKindOfClass:[NSNull class]
+                                                         [[items objectForKey:itemName] setObject:@"" forKey:@"components"]; //其实这个值对我们没多大用处，不用判断，直接remove掉也可以
+                                                     }
+                                                 }
+                                                 
+                                                 [items writeToFile: [self.docPath stringByAppendingPathComponent:@"heroesItems.plist"] atomically:YES];
+                                             }];
+    [task resume];
+}
+
 - (void)setupDataSource {
+    //获取保存文件路径
+    self.docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    //配置和创建可重用的session
+    self.session = [NSURLSession sessionWithConfiguration: [NSURLSessionConfiguration defaultSessionConfiguration] ];
+
     //get heroes list
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesList.plist"]]) {
         self.heroesList = [NSDictionary dictionaryWithContentsOfFile:[self.docPath stringByAppendingPathComponent:@"heroesList.plist"]];
@@ -141,40 +162,43 @@
     }
     
     //get bio data
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesBio.plist"]]) {
-        self.heroesBio = [NSDictionary dictionaryWithContentsOfFile:[self.docPath stringByAppendingPathComponent:@"heroesBio.plist"]];
-    } else {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesBio.plist"]]) {
         [self fetchHeroesBioData];
     }
+    
+    //get ability data
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesAbility.plist"]]) {
+        [self fetchHeroesAbilityData]; //如果本地没有，才更新
+    }
+    
+    //get items data
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesItems.plist"]]) {
+        [self fetchHeroesItemsData];
+    }
+    
+    
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //获取保存文件路径
-    self.docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];;
-    //配置和创建可重用的session
-    self.session = [NSURLSession sessionWithConfiguration: [NSURLSessionConfiguration defaultSessionConfiguration] ];
     //获取数据源
     [self setupDataSource];
-
+    
     self.title = @"Dota2 英雄百科";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ToDetail"]) {
-        DetailViewController *DetailVC = [segue destinationViewController];
+        DetailTableViewController *DetailVC = [segue destinationViewController];
         
         NSIndexPath *index = [self.tableView indexPathForSelectedRow];
         
-        NSString *name = self.heroesNameList[index.row];
-        NSMutableDictionary *selectedHero = [self.heroesList objectForKey: name];
-        
-        [selectedHero setObject: name forKey:@"ename"];
-        [selectedHero setObject: [[self.heroesBio objectForKey:name] objectForKey:@"bio"] forKey:@"bio"];
-        
+        NSString *realName = self.heroesNameList[index.row];
+        NSMutableDictionary *selectedHero = [self.heroesList objectForKey: realName];
+        [selectedHero setObject:realName forKey:@"ename"];
         
         DetailVC.heroIntro = selectedHero;
     }
