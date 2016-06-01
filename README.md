@@ -4,5 +4,5 @@
 关于项目中使用的相关api地址，有部分在代码中，有部分这个 [->wiki](https://wiki.teamfortress.com/wiki/User:RJackson/Dota2API) 里面
 
 ![](./Screenshot/v2_ss1.png)
-![](./Screenshot/v2_ss2.png)
+![](./Screenshot/v3_ss1.png)
 
