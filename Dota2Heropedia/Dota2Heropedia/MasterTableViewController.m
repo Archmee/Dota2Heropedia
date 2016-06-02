@@ -226,8 +226,10 @@
     NSString *urlStr = [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/heroes/%@_hphover.png", realName];
     [cell.iconImage sd_setImageWithURL: [NSURL URLWithString: urlStr]];
     
+    NSString *dac = [NSString stringWithFormat:@"(%@)", [[self.heroesList objectForKey:realName] objectForKey:@"dac"]];
     cell.nameLabel.text = [[self.heroesList objectForKey:realName] objectForKey:@"dname"];
-    cell.typeLabel.text = [[self.heroesList objectForKey:realName] objectForKey:@"dac"];
+    cell.typeLabel.text = dac;
+    cell.rolesLabel.text = [[self.heroesList objectForKey:realName] objectForKey:@"droles"];
 
     return cell;
 }
