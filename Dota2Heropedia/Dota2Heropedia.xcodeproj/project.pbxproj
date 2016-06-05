@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		011D11FC287DE55CF6414BAF /* libPods-Dota2Heropedia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FBBB6E619CE533FA0B79224 /* libPods-Dota2Heropedia.a */; };
+		316AAA991D03E15500BA0022 /* StatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 316AAA981D03E15500BA0022 /* StatusTableViewCell.m */; };
+		316AAAE41D0418C000BA0022 /* agi.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAADE1D0418C000BA0022 /* agi.png */; };
+		316AAAE51D0418C000BA0022 /* attack.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAADF1D0418C000BA0022 /* attack.png */; };
+		316AAAE61D0418C000BA0022 /* defense.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAAE01D0418C000BA0022 /* defense.png */; };
+		316AAAE71D0418C000BA0022 /* int.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAAE11D0418C000BA0022 /* int.png */; };
+		316AAAE81D0418C000BA0022 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAAE21D0418C000BA0022 /* speed.png */; };
+		316AAAE91D0418C000BA0022 /* str.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAAE31D0418C000BA0022 /* str.png */; };
 		31EF84C61CF880F30071CF2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84BB1CF880F30071CF2D /* AppDelegate.m */; };
 		31EF84C71CF880F30071CF2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EF84BC1CF880F30071CF2D /* Assets.xcassets */; };
 		31EF84CA1CF880F30071CF2D /* HeroItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */; };
@@ -23,6 +30,14 @@
 /* Begin PBXFileReference section */
 		21AC9F85E2F7DB53C8D0401F /* Pods-Dota2Heropedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota2Heropedia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dota2Heropedia/Pods-Dota2Heropedia.release.xcconfig"; sourceTree = "<group>"; };
 		312814471CF2E77C005A7E11 /* Dota2Heropedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dota2Heropedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		316AAA971D03E15500BA0022 /* StatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusTableViewCell.h; path = Dota2Heropedia/StatusTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		316AAA981D03E15500BA0022 /* StatusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusTableViewCell.m; path = Dota2Heropedia/StatusTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		316AAADE1D0418C000BA0022 /* agi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agi.png; sourceTree = "<group>"; };
+		316AAADF1D0418C000BA0022 /* attack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attack.png; sourceTree = "<group>"; };
+		316AAAE01D0418C000BA0022 /* defense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defense.png; sourceTree = "<group>"; };
+		316AAAE11D0418C000BA0022 /* int.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = int.png; sourceTree = "<group>"; };
+		316AAAE21D0418C000BA0022 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
+		316AAAE31D0418C000BA0022 /* str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = str.png; sourceTree = "<group>"; };
 		31EF84BA1CF880F30071CF2D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Dota2Heropedia/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		31EF84BB1CF880F30071CF2D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Dota2Heropedia/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		31EF84BC1CF880F30071CF2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Dota2Heropedia/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -67,6 +82,7 @@
 		3128143E1CF2E77C005A7E11 = {
 			isa = PBXGroup;
 			children = (
+				316AAADD1D0418C000BA0022 /* HeroStatus */,
 				312814491CF2E77C005A7E11 /* Dota2Heropedia */,
 				312814481CF2E77C005A7E11 /* Products */,
 				9CA7026B09BABDA038005318 /* Pods */,
@@ -90,6 +106,8 @@
 				31EF84BB1CF880F30071CF2D /* AppDelegate.m */,
 				31EF84C01CF880F30071CF2D /* HeroItemTableViewCell.h */,
 				31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */,
+				316AAA971D03E15500BA0022 /* StatusTableViewCell.h */,
+				316AAA981D03E15500BA0022 /* StatusTableViewCell.m */,
 				31EF84E21CFED5740071CF2D /* AbilityTableViewCell.h */,
 				31EF84E31CFED5740071CF2D /* AbilityTableViewCell.m */,
 				31EF84E51CFEDD710071CF2D /* BioTableViewCell.h */,
@@ -105,6 +123,19 @@
 			);
 			name = Dota2Heropedia;
 			path = Dota2HeroIntro;
+			sourceTree = "<group>";
+		};
+		316AAADD1D0418C000BA0022 /* HeroStatus */ = {
+			isa = PBXGroup;
+			children = (
+				316AAADE1D0418C000BA0022 /* agi.png */,
+				316AAADF1D0418C000BA0022 /* attack.png */,
+				316AAAE01D0418C000BA0022 /* defense.png */,
+				316AAAE11D0418C000BA0022 /* int.png */,
+				316AAAE21D0418C000BA0022 /* speed.png */,
+				316AAAE31D0418C000BA0022 /* str.png */,
+			);
+			path = HeroStatus;
 			sourceTree = "<group>";
 		};
 		9CA7026B09BABDA038005318 /* Pods */ = {
@@ -177,8 +208,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				31EF84DC1CF882C40071CF2D /* LaunchScreen.storyboard in Resources */,
+				316AAAE91D0418C000BA0022 /* str.png in Resources */,
+				316AAAE81D0418C000BA0022 /* speed.png in Resources */,
+				316AAAE41D0418C000BA0022 /* agi.png in Resources */,
+				316AAAE71D0418C000BA0022 /* int.png in Resources */,
+				316AAAE61D0418C000BA0022 /* defense.png in Resources */,
 				31EF84C71CF880F30071CF2D /* Assets.xcassets in Resources */,
 				31EF84DD1CF882C40071CF2D /* Main.storyboard in Resources */,
+				316AAAE51D0418C000BA0022 /* attack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +281,7 @@
 				31EF84CA1CF880F30071CF2D /* HeroItemTableViewCell.m in Sources */,
 				31EF84CC1CF880F30071CF2D /* main.m in Sources */,
 				31EF84E41CFED5740071CF2D /* AbilityTableViewCell.m in Sources */,
+				316AAA991D03E15500BA0022 /* StatusTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

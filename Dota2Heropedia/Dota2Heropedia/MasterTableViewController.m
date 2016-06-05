@@ -229,6 +229,8 @@
     NSString *dac = [NSString stringWithFormat:@"(%@)", [[self.heroesList objectForKey:realName] objectForKey:@"dac"]];
     cell.nameLabel.text = [[self.heroesList objectForKey:realName] objectForKey:@"dname"];
     cell.typeLabel.text = dac;
+ //   [cell.nameLabel sizeToFit];
+//    [cell.typeLabel sizeToFit];
     cell.rolesLabel.text = [[self.heroesList objectForKey:realName] objectForKey:@"droles"];
 
     return cell;
