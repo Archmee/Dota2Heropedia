@@ -187,7 +187,7 @@
     [self setupDataSource];
     
     self.title = @"Dota2 英雄百科";
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -206,6 +206,9 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    [[SDWebImageManager sharedManager] cancelAll];// 1.停止所有的子线程下载
+    [[[SDWebImageManager sharedManager] imageCache] clearMemory];// 2.清空SDWebImage保存的所有内存缓存
 }
 
 #pragma mark - Table view data source

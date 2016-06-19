@@ -10,8 +10,9 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import "StatusTableViewCell.h"
-#import "AbilityTableViewCell.h"
 #import "BioTableViewCell.h"
+#import "AbilityTableViewCell.h"
+#import "AbilityViewController.h"
 
 @interface DetailTableViewController ()
 
@@ -61,9 +62,24 @@
     
     [self setupDataSource];
     
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:nil action:nil];
+    
     //设置一个默认高度，并可自动扩展行高
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showHeroAbility"]) {
+        AbilityViewController *abVC = [segue destinationViewController];
+        
+        NSIndexPath *index = [self.tableView indexPathForSelectedRow];
+        
+        NSString *abilityName = [self.heroesAbilityList objectAtIndex: index.row];
+        NSDictionary *abilityDict = [self.heroesAbility objectForKey: abilityName];
+        abVC.hero = abilityDict;
+        abVC.abilityName = abilityName;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +87,10 @@
 }
 
 #pragma mark - Table view data source
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
@@ -97,11 +117,6 @@
         return 1;
     }
 }
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

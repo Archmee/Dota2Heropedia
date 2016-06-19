@@ -15,6 +15,10 @@
 		316AAAE71D0418C000BA0022 /* int.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAAE11D0418C000BA0022 /* int.png */; };
 		316AAAE81D0418C000BA0022 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAAE21D0418C000BA0022 /* speed.png */; };
 		316AAAE91D0418C000BA0022 /* str.png in Resources */ = {isa = PBXBuildFile; fileRef = 316AAAE31D0418C000BA0022 /* str.png */; };
+		316AAAEC1D05B4C600BA0022 /* AbilityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316AAAEB1D05B4C600BA0022 /* AbilityDetailViewController.m */; };
+		319C35281D13C866001A678E /* play_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 319C35261D13C866001A678E /* play_128.png */; };
+		319C35291D13C866001A678E /* stop_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 319C35271D13C866001A678E /* stop_128.png */; };
+		319C352D1D165530001A678E /* AbilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C352C1D165530001A678E /* AbilityViewController.m */; };
 		31EF84C61CF880F30071CF2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84BB1CF880F30071CF2D /* AppDelegate.m */; };
 		31EF84C71CF880F30071CF2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EF84BC1CF880F30071CF2D /* Assets.xcassets */; };
 		31EF84CA1CF880F30071CF2D /* HeroItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */; };
@@ -38,6 +42,12 @@
 		316AAAE11D0418C000BA0022 /* int.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = int.png; sourceTree = "<group>"; };
 		316AAAE21D0418C000BA0022 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
 		316AAAE31D0418C000BA0022 /* str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = str.png; sourceTree = "<group>"; };
+		316AAAEA1D05B4C600BA0022 /* AbilityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbilityDetailViewController.h; path = Dota2Heropedia/AbilityDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		316AAAEB1D05B4C600BA0022 /* AbilityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbilityDetailViewController.m; path = Dota2Heropedia/AbilityDetailViewController.m; sourceTree = SOURCE_ROOT; };
+		319C35261D13C866001A678E /* play_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_128.png; sourceTree = "<group>"; };
+		319C35271D13C866001A678E /* stop_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop_128.png; sourceTree = "<group>"; };
+		319C352B1D165530001A678E /* AbilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbilityViewController.h; path = Dota2Heropedia/AbilityViewController.h; sourceTree = SOURCE_ROOT; };
+		319C352C1D165530001A678E /* AbilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbilityViewController.m; path = Dota2Heropedia/AbilityViewController.m; sourceTree = SOURCE_ROOT; };
 		31EF84BA1CF880F30071CF2D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Dota2Heropedia/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		31EF84BB1CF880F30071CF2D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Dota2Heropedia/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		31EF84BC1CF880F30071CF2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Dota2Heropedia/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -104,18 +114,15 @@
 				31EF84C31CF880F30071CF2D /* main.m */,
 				31EF84BA1CF880F30071CF2D /* AppDelegate.h */,
 				31EF84BB1CF880F30071CF2D /* AppDelegate.m */,
-				31EF84C01CF880F30071CF2D /* HeroItemTableViewCell.h */,
-				31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */,
-				316AAA971D03E15500BA0022 /* StatusTableViewCell.h */,
-				316AAA981D03E15500BA0022 /* StatusTableViewCell.m */,
-				31EF84E21CFED5740071CF2D /* AbilityTableViewCell.h */,
-				31EF84E31CFED5740071CF2D /* AbilityTableViewCell.m */,
-				31EF84E51CFEDD710071CF2D /* BioTableViewCell.h */,
-				31EF84E61CFEDD710071CF2D /* BioTableViewCell.m */,
 				31EF84C41CF880F30071CF2D /* MasterTableViewController.h */,
 				31EF84C51CF880F30071CF2D /* MasterTableViewController.m */,
 				31EF84DF1CFA9B550071CF2D /* DetailTableViewController.h */,
 				31EF84E01CFA9B550071CF2D /* DetailTableViewController.m */,
+				316AAAEA1D05B4C600BA0022 /* AbilityDetailViewController.h */,
+				316AAAEB1D05B4C600BA0022 /* AbilityDetailViewController.m */,
+				319C352B1D165530001A678E /* AbilityViewController.h */,
+				319C352C1D165530001A678E /* AbilityViewController.m */,
+				319C352A1D146133001A678E /* Cells */,
 				31EF84C21CF880F30071CF2D /* Info.plist */,
 				31EF84DB1CF882C40071CF2D /* Main.storyboard */,
 				31EF84DA1CF882C40071CF2D /* LaunchScreen.storyboard */,
@@ -128,6 +135,8 @@
 		316AAADD1D0418C000BA0022 /* HeroStatus */ = {
 			isa = PBXGroup;
 			children = (
+				319C35261D13C866001A678E /* play_128.png */,
+				319C35271D13C866001A678E /* stop_128.png */,
 				316AAADE1D0418C000BA0022 /* agi.png */,
 				316AAADF1D0418C000BA0022 /* attack.png */,
 				316AAAE01D0418C000BA0022 /* defense.png */,
@@ -136,6 +145,21 @@
 				316AAAE31D0418C000BA0022 /* str.png */,
 			);
 			path = HeroStatus;
+			sourceTree = "<group>";
+		};
+		319C352A1D146133001A678E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				31EF84C01CF880F30071CF2D /* HeroItemTableViewCell.h */,
+				31EF84C11CF880F30071CF2D /* HeroItemTableViewCell.m */,
+				316AAA971D03E15500BA0022 /* StatusTableViewCell.h */,
+				316AAA981D03E15500BA0022 /* StatusTableViewCell.m */,
+				31EF84E21CFED5740071CF2D /* AbilityTableViewCell.h */,
+				31EF84E31CFED5740071CF2D /* AbilityTableViewCell.m */,
+				31EF84E51CFEDD710071CF2D /* BioTableViewCell.h */,
+				31EF84E61CFEDD710071CF2D /* BioTableViewCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		9CA7026B09BABDA038005318 /* Pods */ = {
@@ -213,9 +237,11 @@
 				316AAAE41D0418C000BA0022 /* agi.png in Resources */,
 				316AAAE71D0418C000BA0022 /* int.png in Resources */,
 				316AAAE61D0418C000BA0022 /* defense.png in Resources */,
+				319C35291D13C866001A678E /* stop_128.png in Resources */,
 				31EF84C71CF880F30071CF2D /* Assets.xcassets in Resources */,
 				31EF84DD1CF882C40071CF2D /* Main.storyboard in Resources */,
 				316AAAE51D0418C000BA0022 /* attack.png in Resources */,
+				319C35281D13C866001A678E /* play_128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,11 +301,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				31EF84E11CFA9B550071CF2D /* DetailTableViewController.m in Sources */,
+				316AAAEC1D05B4C600BA0022 /* AbilityDetailViewController.m in Sources */,
 				31EF84CD1CF880F30071CF2D /* MasterTableViewController.m in Sources */,
 				31EF84E71CFEDD710071CF2D /* BioTableViewCell.m in Sources */,
 				31EF84C61CF880F30071CF2D /* AppDelegate.m in Sources */,
 				31EF84CA1CF880F30071CF2D /* HeroItemTableViewCell.m in Sources */,
 				31EF84CC1CF880F30071CF2D /* main.m in Sources */,
+				319C352D1D165530001A678E /* AbilityViewController.m in Sources */,
 				31EF84E41CFED5740071CF2D /* AbilityTableViewCell.m in Sources */,
 				316AAA991D03E15500BA0022 /* StatusTableViewCell.m in Sources */,
 			);
