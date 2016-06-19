@@ -627,14 +627,14 @@
                                 <exclude reference="ppP-XE-tAZ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="rxh-q0-V4f"/>
+                                <exclude reference="G7z-72-orq"/>
+                                <exclude reference="LAq-Bp-ZKI"/>
+                                <exclude reference="UPO-a2-6mX"/>
                                 <exclude reference="Dbu-AH-xBC"/>
                                 <exclude reference="H8P-BL-AOA"/>
                                 <exclude reference="XgC-sW-f2t"/>
                                 <exclude reference="st9-xL-72i"/>
-                                <exclude reference="G7z-72-orq"/>
-                                <exclude reference="LAq-Bp-ZKI"/>
-                                <exclude reference="UPO-a2-6mX"/>
-                                <exclude reference="rxh-q0-V4f"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -644,14 +644,14 @@
                                 <include reference="ppP-XE-tAZ"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="rxh-q0-V4f"/>
+                                <include reference="G7z-72-orq"/>
+                                <include reference="LAq-Bp-ZKI"/>
+                                <include reference="UPO-a2-6mX"/>
                                 <include reference="Dbu-AH-xBC"/>
                                 <include reference="H8P-BL-AOA"/>
                                 <include reference="XgC-sW-f2t"/>
                                 <include reference="st9-xL-72i"/>
-                                <include reference="G7z-72-orq"/>
-                                <include reference="LAq-Bp-ZKI"/>
-                                <include reference="UPO-a2-6mX"/>
-                                <include reference="rxh-q0-V4f"/>
                             </mask>
                         </variation>
                     </view>
@@ -676,6 +676,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Mnq-iC-bFj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0XB-VT-ZBB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
