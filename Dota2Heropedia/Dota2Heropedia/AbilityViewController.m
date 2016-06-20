@@ -36,7 +36,8 @@
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic) AVPlayerItem *playerItem;
 
-@property (nonatomic) BOOL isPlaying;
+@property (nonatomic) BOOL isPlaying; //是否正在播放
+@property (nonatomic) BOOL canPlay; //能否播放，只要视频正在加载以及加载失败触摸播放按钮都不会做出反应
 
 @property (nonatomic) NSInteger totalTime;
 @property (nonatomic) NSInteger currentTime;
@@ -88,13 +89,13 @@
     [self.headImage sd_setImageWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://cdn.dota2.com/apps/dota2/images/abilities/%@_hp2.png", self.abilityName ]]];
     
     //定义展示图右边的说明文字
-    self.descLabel = [[UILabel alloc] initWithFrame:CGRectMake(8+self.headImage.frame.size.width+8, navTop+8, mainWidth-16-self.headImage.frame.size.width, 8+self.headImage.frame.size.height)];
+    self.descLabel = [[UILabel alloc] initWithFrame:CGRectMake(8+self.headImage.frame.size.width+8, navTop+8, mainWidth-16-self.headImage.frame.size.width-8, self.headImage.frame.size.height)];
     NSString *descText = [[self.hero objectForKey:@"desc"] stringByReplacingOccurrencesOfString:@"\r\n" withString:@" "];
-    self.descLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-    self.descLabel.attributedText = [self setAttributedString:descText fotHeight:4];
+    self.descLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+    self.descLabel.attributedText = [self setAttributedString:descText fotHeight:2];
     self.descLabel.numberOfLines = 0;
     //[self.descLabel sizeToFit];//如果设置了下面的，就不用设置这个了，这个是让label自动缩放的
-    [self.descLabel adjustsFontSizeToFitWidth]; //让字体自动变小，不能超出label的高度
+    [self.descLabel adjustsFontSizeToFitWidth]; //让字体自动变小一点，但是后面发觉还是没能全部解决问题，部分超出字体被截掉
     
     [self.view addSubview:self.headImage];
     [self.view addSubview:self.descLabel];
@@ -114,8 +115,6 @@
     self.noteLabel = noteLabel;
     [self.view addSubview:noteLabel];
     noteLabel = nil;
-    
-    
     
     ////处理左半边的affects
     //将字符串按照html标签<br/>来分割
@@ -194,6 +193,8 @@
     if ([keyPath isEqualToString:@"status"]) {
         NSString *new = change[NSKeyValueChangeNewKey];
         if ([new integerValue] == AVPlayerItemStatusReadyToPlay) {//视频准备播放
+            self.canPlay = YES; //已经准备好可以播放了
+
             self.totalTime = CMTimeGetSeconds(self.playerItem.duration);
             self.timeLable.text = [self formmatTimeToString:self.totalTime];
             
@@ -212,6 +213,7 @@
                 
             }];
         } else { //视频加载失败
+            self.canPlay = NO;
             self.timeLable.text = @"加载失败";
         }
     }
@@ -237,6 +239,7 @@
 
 - (void)showPlayButton {
     self.isPlaying = NO; //初始化为未播放状态
+    self.canPlay = NO; //初始化不能播放状态,等待加载完成再更改
     
     UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(mainWidth/2-20, 255, 40, 40)];
     playButton.layer.cornerRadius = playButton.bounds.size.width / 2; //no #import <QuartzCore/QuartzCore.h>
@@ -262,6 +265,10 @@
 }
 
 - (void)touchEvent {
+    if (!self.canPlay) { //如果不能播放，则不处理点击事件
+        return ;
+    }
+    
     if (self.isPlaying) { //如果正在播放时停止了按钮，则停止
         [self stopVideo];
         
