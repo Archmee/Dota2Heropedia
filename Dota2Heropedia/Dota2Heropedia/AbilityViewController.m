@@ -13,8 +13,9 @@
 
 #define mainWidth self.view.frame.size.width
 #define mainHeight self.view.frame.size.height
-//navTop是导航栏的高度＋状态栏高度得到的
-#define navTop self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height
+//navTop是导航栏的高度＋状态栏高度得到的 self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height
+//注意：因为将storyboard中的从UIView改为了UIScrollView的关系，现在不需要navTop的高度了，所以暂时将其改为0，如果纯代码添加scrollView的话就要用到
+#define navTop 0
 
 @interface AbilityViewController ()
 
@@ -47,11 +48,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
-//    self.abilityName = @"antimage_mana_break";
-//    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-//    NSDictionary *heroesAbility = [NSDictionary dictionaryWithContentsOfFile:[docPath stringByAppendingPathComponent:@"heroesAbility.plist"]];
-//    self.hero = [heroesAbility objectForKey:self.abilityName];//antimage_mana_break
+    // 这里保留的代码是为了单独调试改界面时用的
+    /*self.abilityName = @"antimage_mana_break";
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSDictionary *heroesAbility = [NSDictionary dictionaryWithContentsOfFile:[docPath stringByAppendingPathComponent:@"heroesAbility.plist"]];
+    self.hero = [heroesAbility objectForKey:self.abilityName];//antimage_mana_break*/
     //NSLog(@"%@", self.hero);
     
     self.title = [self.hero objectForKey:@"dname"];
@@ -59,6 +60,21 @@
     [self setHeadInfo];
     [self setIntroInfo];
     [self setVideoInfo];
+    
+    
+    //解决scrollView其实有两种方案，一种是在storyboard中选中该视图的view设置Class为UISCrollView，然后在下面设置ScrollView内容的宽高
+    //放在末尾是为了让前面的元素大小都初始化完成后再执行
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(mainWidth, navTop+self.headImage.frame.size.height+8+10+self.noteLabel.frame.size.height+10+(self.affectsLabel.frame.size.height >= self.attribLable.frame.size.height ? self.affectsLabel.frame.size.height : self.attribLable.frame.size.height)+10+300+8)];//这个高度是上面所有元素Y轴的位置相加直到播放视频位置，最后加上视频的高度300，再加8是为了让视频下面留一点白边，而不让视频紧贴着下边缘
+    
+    //第二种就是 完全代码创建一个 UIScrollView 然后添加到self.view，然后后面所有针对self.view添加的元素操作都要放在UIScrollView上了
+    /*UIScrollView *scroll =  [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, mainWidth, mainHeight)];
+    scroll.contentSize = CGSizeMake(mainWidth, navTop+self.headImage.frame.size.height+8+10+self.noteLabel.frame.size.height+10+(self.affectsLabel.frame.size.height >= self.attribLable.frame.size.height ? self.affectsLabel.frame.size.height : self.attribLable.frame.size.height)+10+300+8);
+    scroll.showsVerticalScrollIndicator = YES;
+    
+    [self.view addSubview:scroll];
+    [self.view sendSubviewToBack:scroll]; //sendSubviewToBack是把一个视图放到一个视图的后面，bringSubviewToFront 是把一个视图放到一个视图的前面
+    */
+    
 }
 
 - (void)didReceiveMemoryWarning {
