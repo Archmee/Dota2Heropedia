@@ -5,8 +5,8 @@
 
 Note:上课老师讲课只有10讲，并没有做完这个App，所以teacher分支下是老师的项目截至部分，而现有master分支后期进度都属于我个人完成。
 
-![](./Screenshot/v5_ss2.png)
-![](./Screenshot/v5_ss1.png)
-![](./Screenshot/v6_ss2.png)
-![](./Screenshot/v7_ss1.png)
-![](./Screenshot/v7_ss2.png)
+![](./Screenshot/v8_ss1.png)
+![](./Screenshot/v8_ss2.png)
+![](./Screenshot/v8_ss3.png)
+![](./Screenshot/v8_ss4.png)
+![](./Screenshot/v8_ss5.png)

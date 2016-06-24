@@ -33,7 +33,7 @@
     //获取数据源，其实第一次启动app时，这个setupDataSource初始化的数据为空，等到接收到通知后再次初始化数据才有用，但是第二次启动app就依靠这个调用了，直接从文件读取
     [self setupDataSource];
     
-    self.title = @"Dota2 英雄百科";
+    self.title = @"英雄百科";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:nil action:nil];
     
     //给通知中心添加观察者，得到通知后便执行指定的函数。
