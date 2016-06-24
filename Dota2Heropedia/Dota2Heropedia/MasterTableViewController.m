@@ -11,184 +11,43 @@
 #import "DetailTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h> //导入第三方库
 
+#import "DataMode.h"
+
 @interface MasterTableViewController ()
 
-@property (nonatomic) NSString *docPath; //程序存放文件的路径
-
 @property (nonatomic) NSArray *heroesNameList;
-/* heroesNameList Array 数据结构
- ["axe", "antimage" ....]
- */
-
 @property (nonatomic) NSDictionary *heroesList;
-/* heroesList Dictionary的数据结构
- "antimage":{
- "dname":"敌法师",
- "u":"Anti-Mage",
- "pa":"agi",
- "attribs":{
- "str":{
- "b":22,
- "g":"1.20"
- },
- "int":{
- "b":15,
- "g":"1.80"
- },
- "agi":{
- "b":22,
- "g":"2.80"
- },
- "ms":315,
- "dmg":{
- "min":27,
- "max":31
- },
- "armor":2.08
- },
- "dac":"近战",
- "droles":"核心 - 逃生 - 爆发"
- },
- */
-
-@property (nonatomic) NSURLSession *session;
 
 @end
 
 @implementation MasterTableViewController
 
-/*----------NOTE------------
- iOS新规定必须使用https安全连接，但是我们下面有的用了http，而个别使用的https，但是不是每个url都支持了https，所以不支持https的url只能用http，这个时候，我们就要将该域名添加至Info.plist的ATS选项中作为例外情况，QAQ
---------------------------*/
-
--(void)fetchHeroesListData {
-    NSString *urlString = @"http://www.dota2.com/jsfeed/heropediadata/?feeds=herodata&l=schinese";
-    /* l=schinese 是根据在dota2.com官网右上角切换不同语言时获取到的，如果我切换其他语言，相应语言的参数值都可以在url中获取到，我们甚至可以将那个语言列表拿到本地来存储，然后让用户切换不同的语言来做到多语言版本，当然，现在还没尝试，是否可行。
-     l=schinese 是 简体中文（simplified chinese）,其他随便什么参数都是返回英文。其实这里很疑惑的就是，在网页端除了制定参数l＝en或l＝english外，
-     其他任何参数都返回中文数据，不知是什么原因，但是据我猜想：
-        一有可能是服务器代码很混乱，没有严格的文档
-        二也有可能这是服务器区分了Web和客户端（iOS活着android），然后故意增加取到数据的难度
-        三种可能是通过Web访问api的时候，服务器获取到我的ip是在中国大陆，所以只要在没有明确指定语言的情况下都默认返回中文（也有可能和iOS一样是根据请求体中的内容来返回），而iOS则根据系统时区或系统语言来返回（我的iOS Simulator是英语）
-     
-     haha, 经过验证，我将模拟器的语言设置为中文后，果然和Web端保持了同步，😄
-     而web端，原理类似，浏览器早就获取了你的地区信息，在请求头中可以查看到Accept-Language选项，也是根据系统语言来设置的
-     
-     结论就是，web和iOS都是类似，如果在参数中指定了官方提供的范围内的语言参数，就返回参数指定的语言，如果没指定或者指定了一些服务器无法区分的参数呢，就根据用户系统语言来返回（通过网络发送的请求体中会提供Accept-Language）
-     
-     TODO：验证此问题的最好方法就是抓包，看看发送的请求体中的内容
-     */
-    
-    NSURLSessionDataTask *task = [self.session dataTaskWithURL: [NSURL URLWithString: urlString]
-                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                 NSDictionary *jsonSer = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                   options:NSJSONReadingMutableContainers
-                                                                                                    error:nil];
-                                                 self.heroesList = [jsonSer objectForKey:@"herodata"];
-                                                 self.heroesNameList = [self.heroesList allKeys];
-                                                 [self.heroesList writeToFile:[self.docPath stringByAppendingPathComponent:@"heroesList.plist"] atomically:YES];
-                                                 
-                                                 //该函数是为了让这段代码块中的代码在主线程中执行，而不是在背景线程执行
-                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                     [self.tableView reloadData]; //当数据从网络请求成功后，要刷新表
-                                                 });
-                                             }];
-    
-    [task resume];
-}
-
-- (void)fetchHeroesBioData {
-    NSString *urlString = @"http://www.dota2.com/jsfeed/heropickerdata?l=schinese"; //此处使用http连接
-    
-    //create session data task
-    NSURLSessionDataTask *task = [self.session dataTaskWithURL: [NSURL URLWithString: urlString]
-                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                            NSDictionary *bio = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                    options:kNilOptions
-                                                                                                      error:nil];
-                                            [bio writeToFile:[self.docPath stringByAppendingPathComponent:@"heroesBio.plist"] atomically:YES];
-                                        }];
-    //start task
-    [task resume];
-}
-
-- (void)fetchHeroesAbilityData {
-    NSString *urlString = @"http://www.dota2.com/jsfeed/heropediadata/?feeds=abilitydata&l=schinese";
-    
-    NSURLSessionDataTask *task = [self.session dataTaskWithURL:[NSURL URLWithString:urlString]
-                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                 NSDictionary *ability = [NSJSONSerialization JSONObjectWithData:data
-                                                                                              options:kNilOptions
-                                                                                                error:nil];
-                                                 [[ability objectForKey:@"abilitydata"] writeToFile: [self.docPath stringByAppendingPathComponent:@"heroesAbility.plist"] atomically:YES];
-                                             }];
-    [task resume];
-}
-
-- (void)fetchHeroesItemsData {
-    NSString *urlString = @"http://www.dota2.com/jsfeed/heropediadata/?feeds=itemdata&l=schinese";
-    
-    NSURLSessionDataTask *task = [self.session dataTaskWithURL:[NSURL URLWithString:urlString]
-                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                 NSMutableDictionary *items = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                         options:NSJSONReadingMutableContainers
-                                                                                                         error:nil];
-                                                 items = [items objectForKey:@"itemdata"];//取出需要的列表覆盖原数据
-                                                 NSArray *itemsList = [items allKeys];//为了遍历
-                                                 //过滤空空对象值 null
-                                                 for (NSString *itemName in itemsList) {
-                                                     id component = [[items objectForKey:itemName] objectForKey:@"components"];
-                                                     if ([component isEqual:[NSNull null]]) { //isKindOfClass:[NSNull class]
-                                                         [[items objectForKey:itemName] setObject:@"" forKey:@"components"]; //其实这个值对我们没多大用处，不用判断，直接remove掉也可以
-                                                     }
-                                                 }
-                                                 
-                                                 [items writeToFile: [self.docPath stringByAppendingPathComponent:@"heroesItems.plist"] atomically:YES];
-                                             }];
-    [task resume];
-}
-
 - (void)setupDataSource {
-    //获取保存文件路径
-    self.docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    //配置和创建可重用的session
-    self.session = [NSURLSession sessionWithConfiguration: [NSURLSessionConfiguration defaultSessionConfiguration] ];
-
-    //get heroes list
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesList.plist"]]) {
-        self.heroesList = [NSDictionary dictionaryWithContentsOfFile:[self.docPath stringByAppendingPathComponent:@"heroesList.plist"]];
-        self.heroesNameList = [self.heroesList allKeys];
-    } else {
-        [self fetchHeroesListData];
-    }
-    
-    //get bio data
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesBio.plist"]]) {
-        [self fetchHeroesBioData];
-    }
-    
-    //get ability data
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesAbility.plist"]]) {
-        [self fetchHeroesAbilityData]; //如果本地没有，才更新
-    }
-    
-    //get items data
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.docPath stringByAppendingPathComponent:@"heroesItems.plist"]]) {
-        [self fetchHeroesItemsData];
-    }
-    
-    
+    self.heroesList = [[DataMode shareModel] getFileData:HeroesListFile];
+    self.heroesNameList = [self.heroesList allKeys];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //获取数据源
+    //获取数据源，其实第一次启动app时，这个setupDataSource初始化的数据为空，等到接收到通知后再次初始化数据才有用，但是第二次启动app就依靠这个调用了，直接从文件读取
     [self setupDataSource];
     
     self.title = @"Dota2 英雄百科";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:nil action:nil];
+    
+    //给通知中心添加观察者，得到通知后便执行指定的函数。
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiReloadData) name:@"reloadTable" object: nil];
 }
+
+//接到通知中心发出的通知，执行该函数
+-(void)notiReloadData {
+    [self setupDataSource]; //数据下载完成后就要初始化组装数据
+    
+    [self.tableView reloadData]; //刷新表格
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadTable" object:nil]; //相应工作完成后，要移除 observer
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ToDetail"]) {

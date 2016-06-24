@@ -62,7 +62,6 @@
     [self setIntroInfo];
     [self setVideoInfo];
     
-    
     //解决scrollView其实有两种方案，一种是在storyboard中选中该视图的view设置Class为UISCrollView，然后在下面设置ScrollView内容的宽高
     //放在末尾是为了让前面的元素大小都初始化完成后再执行
     [(UIScrollView *)self.view setContentSize:CGSizeMake(mainWidth, navTop+self.headImage.frame.size.height+8+10+self.noteLabel.frame.size.height+10+(self.affectsLabel.frame.size.height >= self.attribLable.frame.size.height ? self.affectsLabel.frame.size.height : self.attribLable.frame.size.height)+10+300+8)];//这个高度是上面所有元素Y轴的位置相加直到播放视频位置，最后加上视频的高度300，再加8是为了让视频下面留一点白边，而不让视频紧贴着下边缘
@@ -327,11 +326,6 @@
     //去掉换行符
     NSString *finalRes = [resultByFilter stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 
-    //[resultByFilter deleteCharactersInRange:NSMakeRange([resultByFilter length]-1, 1)]; //最后一个\n字符替换掉，不然整个label会多一个空行
-    
-//    NSLog(@"%@", finalRes);
-//    NSLog(@"%lu", [finalRes length]);
-    
     return finalRes;
 }
 
@@ -345,31 +339,31 @@
 }
 
 //这是获取播放前的一个视频截图，但是无效，所以暂时不用
-- (UIImage *)getImage:(NSURL *)videoURL {
-    //    NSURL *url = [[NSBundle mainBundle] URLForResource:@"anti-mage_blink" withExtension:@"mp4"];
-    
-    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:videoURL options:nil];
-    NSParameterAssert(urlAsset);
-    //获取视频时长，单位：秒
-    //NSLog(@"%llu", urlAsset.duration.value/urlAsset.duration.timescale);
-    
-    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset: urlAsset];
-    generator.appliesPreferredTrackTransform = YES;
-    generator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
-    generator.maximumSize = CGSizeMake(360, 480);
-    
-    NSError *error = nil;
-    CGImageRef img = [generator copyCGImageAtTime: CMTimeMake(10, 10) actualTime:NULL error:&error];
-    
-    if (error) {
-        NSLog(@"Error happened: %@", [error description]);
-        return nil;
-    }
-    UIImage *image = [UIImage imageWithCGImage: img];
-    CGImageRelease(img);
-    
-    return image;
-    
-}
+//- (UIImage *)getImage:(NSURL *)videoURL {
+//    //    NSURL *url = [[NSBundle mainBundle] URLForResource:@"anti-mage_blink" withExtension:@"mp4"];
+//    
+//    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:videoURL options:nil];
+//    NSParameterAssert(urlAsset);
+//    //获取视频时长，单位：秒
+//    //NSLog(@"%llu", urlAsset.duration.value/urlAsset.duration.timescale);
+//    
+//    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset: urlAsset];
+//    generator.appliesPreferredTrackTransform = YES;
+//    generator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+//    generator.maximumSize = CGSizeMake(360, 480);
+//    
+//    NSError *error = nil;
+//    CGImageRef img = [generator copyCGImageAtTime: CMTimeMake(10, 10) actualTime:NULL error:&error];
+//    
+//    if (error) {
+//        NSLog(@"Error happened: %@", [error description]);
+//        return nil;
+//    }
+//    UIImage *image = [UIImage imageWithCGImage: img];
+//    CGImageRelease(img);
+//    
+//    return image;
+//    
+//}
 
 @end

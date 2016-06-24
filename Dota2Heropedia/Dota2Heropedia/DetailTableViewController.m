@@ -14,6 +14,8 @@
 #import "AbilityTableViewCell.h"
 #import "AbilityViewController.h"
 
+#import "DataMode.h"
+
 @interface DetailTableViewController ()
 
 @property (nonatomic) NSString *heroName;
@@ -30,24 +32,6 @@
 @end
 
 @implementation DetailTableViewController
-
-- (void)setupDataSource {
-    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-
-    self.heroesBio = [[NSDictionary dictionaryWithContentsOfFile:[docPath stringByAppendingPathComponent:@"heroesBio.plist"]] objectForKey:self.heroName];
-    
-    self.heroesAbility = [NSDictionary dictionaryWithContentsOfFile:[docPath stringByAppendingPathComponent:@"heroesAbility.plist"]] ;
-    NSArray *ablist = [self.heroesAbility allKeys];
-    NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
-    for (NSString *abName in ablist) {
-        if ([abName hasPrefix:[NSString stringWithFormat:@"%@_", self.heroName]]) {
-            [tmp setObject:[self.heroesAbility objectForKey:abName] forKey:abName];
-        }
-    }
-    self.heroesAbility = nil;// does it work
-    self.heroesAbility = tmp;
-    self.heroesAbilityList = [tmp allKeys]; //取得键值数组
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,6 +53,24 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
+- (void)setupDataSource {
+    
+    self.heroesBio = [[[DataMode shareModel] getFileData:HeroesBioFile] objectForKey:self.heroName];
+    self.heroesAbility = [[DataMode shareModel] getFileData:HeroesAbilityFile];
+    
+    NSArray *ablist = [self.heroesAbility allKeys];
+    NSMutableDictionary *tmp = [[NSMutableDictionary alloc] init];
+    for (NSString *abName in ablist) { //遍历并取和当前英雄有关的技能
+        if ([abName hasPrefix:[NSString stringWithFormat:@"%@_", self.heroName]]) { //检查前缀判断是否属于该英雄的技能
+            [tmp setObject:[self.heroesAbility objectForKey:abName] forKey:abName];
+        }
+    }
+    self.heroesAbility = nil;// does it work ?
+    self.heroesAbility = tmp;
+    self.heroesAbilityList = [tmp allKeys]; //取得键值数组
+}
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showHeroAbility"]) {
         AbilityViewController *abVC = [segue destinationViewController];
@@ -76,8 +78,7 @@
         NSIndexPath *index = [self.tableView indexPathForSelectedRow];
         
         NSString *abilityName = [self.heroesAbilityList objectAtIndex: index.row];
-        NSDictionary *abilityDict = [self.heroesAbility objectForKey: abilityName];
-        abVC.hero = abilityDict;
+        abVC.hero = [self.heroesAbility objectForKey: abilityName];
         abVC.abilityName = abilityName;
     }
 }

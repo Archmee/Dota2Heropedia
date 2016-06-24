@@ -8,3 +8,5 @@ Note:上课老师讲课只有10讲，并没有做完这个App，所以teacher分
 ![](./Screenshot/v5_ss2.png)
 ![](./Screenshot/v5_ss1.png)
 ![](./Screenshot/v6_ss2.png)
+![](./Screenshot/v7_ss1.png)
+![](./Screenshot/v7_ss2.png)

@@ -8,15 +8,16 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
-
-@end
+#import "DataMode.h"
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //初始化调用数据模型
+    //[DataMode shareModel];
+    
     return YES;
 }
 
